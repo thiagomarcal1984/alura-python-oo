@@ -53,3 +53,16 @@ def saca(conta, valor):
 def extrato(conta):
     print("Saldo é {}".format(conta["saldo"]))
 ```
+
+# Classe e Objeto
+Classes são modelos de como os objetos serão criados e estruturados, bem como define as funções/métodos que compõem seu comportamento.
+```python
+>>> from conta import Conta
+# A variável conta é a referência para o objeto conta.Conta
+>>> conta = Conta()
+>>> type(conta)
+<class 'conta.Conta'>
+>>> conta
+<conta.Conta object at 0x0000012CB2682CD0>
+>>>
+```

@@ -66,3 +66,19 @@ Classes são modelos de como os objetos serão criados e estruturados, bem como 
 <conta.Conta object at 0x0000012CB2682CD0>
 >>>
 ```
+
+# Construtor
+Os construtores em Python são criados usando o nome de função `__init__(self, parâmetros)`.
+
+É necessário fornecer o `self` como o primeiro parâmetro do construtor de uma classe em Python. O parâmetro `self` é fornecido pelo Python.
+
+Definição da classe `Conta` no arquivo `conta.py`:
+```python
+class Conta:
+    def __init__(self, numero, titular, saldo, limite):
+        print("Construindo objeto... {}".format(self))
+        self.numero = numero
+        self.titular = titular
+        self.saldo = saldo
+        self.limite = limite
+```

@@ -146,3 +146,24 @@ Saldo de 1000 do titular Marco
 Saldo de 400 do titular Nico
 >>>
 ```
+
+# None e Coletor de lixo
+Veja o código abaixo:
+```python
+>>> conta = Conta(1, 'Nico', 600, 1000) # Criação do primeiro objeto.
+Construindo objeto... <conta.Conta object at 0x0000027154CEB650>
+>>> conta = Conta(1, 'Nico', 600, 1000) # Criação do segundo objeto.
+Construindo objeto... <conta.Conta object at 0x0000027154CEB690>
+>>> outra = conta 
+>>> outra # A nova variável guarda o mesmo endereço de memória da variável conta.
+<conta.Conta object at 0x0000027154CEB690>
+>>> outra = None # Removendo a referência da variável outra.
+>>> outra
+>>> type(outra)
+<class 'NoneType'>
+```
+Repare que a referência/variável `conta` apontava para o endereço de memória `0x0000027154CEB650`, mas depois passou a apontar para outro endereço de memória, o `0x0000027154CEB690`.
+
+O primeiro objeto que estava no endereço `0x0000027154CEB650` será removido pelo coletor de lixo do Python.
+
+O `NoneType` é o tipo nulo do Python. Variáveis que apontam para `None` não apontam para nenhum endereço de memória. Atribuir `None` é um jeito de limpar a variável.

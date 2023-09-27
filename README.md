@@ -82,3 +82,22 @@ class Conta:
         self.saldo = saldo
         self.limite = limite
 ```
+
+# Acessando atributos
+Para acessar atributos de um objeto, use um ponto seguido do nome do atributo que deseja acessar: 
+```python
+>>> from conta import Conta
+>>> conta1 = Conta(123, 'Nico', 50, 2000) 
+Construindo objeto... <conta.Conta object at 0x0000020E9A2D2CD0>
+>>> conta2 = Conta(456, 'Marco', 100, 1000)   
+Construindo objeto... <conta.Conta object at 0x0000020E9A64B150>
+>>> conta1.titular
+'Nico'
+>>> conta2.titular 
+'Marco'
+>>> conta1.saldo   
+50
+>>> conta2.saldo 
+100
+>>>
+```

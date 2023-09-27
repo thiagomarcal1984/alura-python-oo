@@ -213,3 +213,27 @@ class Conta:
     def saca(self, valor):
         self.__saldo -= valor
 ```
+
+# Encapsulamento
+Acréscimo do método `transfere` na classe `Conta`:
+```python
+class Conta:
+    # Resto do código.
+    def transfere(self, valor, destino):
+        self.saca(valor)
+        destino.deposita(valor)
+```
+Execução do código:
+```python
+>>> from conta import Conta
+>>> conta = Conta(1, 'Thiago', 5000, 10000)
+Construindo objeto... <conta.Conta object at 0x00000285840E2F50>
+>>> conta2 = Conta(2, 'Teste', 300, 4000)
+Construindo objeto... <conta.Conta object at 0x000002858410D0D0>
+>>> conta.transfere(500, conta2)
+>>> conta.extrato()
+Saldo de 4500 do titular Thiago
+>>> conta2.extrato()
+Saldo de 800 do titular Teste
+>>>
+```

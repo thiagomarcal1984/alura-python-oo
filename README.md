@@ -237,3 +237,6 @@ Saldo de 4500 do titular Thiago
 Saldo de 800 do titular Teste
 >>>
 ```
+
+# Coesão
+A classe Conta não precisaria de ter um método `eh_inadimplente(self, cliente)`: a responsabilidade pela adimplência é de uma outra classe. Classes com responsabilidades bem definidas são classes coesas. Coesão se refere a atribuir corretamente as responsabilidades para as devidas classes. "Uma única razão para ser modificada" é a regra de coesão do código.

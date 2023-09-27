@@ -167,3 +167,49 @@ Repare que a referência/variável `conta` apontava para o endereço de memória
 O primeiro objeto que estava no endereço `0x0000027154CEB650` será removido pelo coletor de lixo do Python.
 
 O `NoneType` é o tipo nulo do Python. Variáveis que apontam para `None` não apontam para nenhum endereço de memória. Atribuir `None` é um jeito de limpar a variável.
+
+# Atributos privados
+Os modificadores de acesso atributos no Python são diferentes de outras linguagem baseadas em C (Java, PHP, C# etc.). Por padrão, os atributos são públicos.
+
+Para definir um atributo como privado no Python (encapsulamento), prefixamos o atributo com um sublinhado DUPLO (`objeto.__atributo`). Por baixo dos panos, o Python acrescenta, para cada atributo da classe, um underscore seguido do nome da classe (`objeto._Classe__atributo`):
+
+```python
+>>> from conta import Conta
+>>> conta = Conta(21, 'Gambit', 500.0, 1500.0)
+Construindo objeto... <conta.Conta object at 0x0000021F32C12F50>
+>>> conta.__limite # Atributo privado prefixado com dois underscores.
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Conta' object has no attribute '__limite'
+>>> conta._limite # Atributo privado prefixado com um underscore.
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Conta' object has no attribute '_limite'
+>>> conta.limite # Atributo privado sem prefixo.
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Conta' object has no attribute 'limite'
+# Atributo prefixado com underscore, nome da classe e dois underscores.
+>>> conta._Conta__limite 
+1500.0
+>>>
+```
+Novo código da classe Conta:
+```python
+class Conta:
+    def __init__(self, numero, titular, saldo, limite):
+        print("Construindo objeto... {}".format(self))
+        self.__numero = numero
+        self.__titular = titular
+        self.__saldo = saldo
+        self.__limite = limite
+
+    def extrato(self):
+        print("Saldo de {} do titular {}".format(self.__saldo, self.__titular))
+
+    def deposita(self, valor):
+        self.__saldo += valor
+
+    def saca(self, valor):
+        self.__saldo -= valor
+```

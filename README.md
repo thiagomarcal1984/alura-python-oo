@@ -101,3 +101,48 @@ Construindo objeto... <conta.Conta object at 0x0000020E9A64B150>
 100
 >>>
 ```
+
+# Usando métodos
+Sempre forneça o parâmetro `self` ao declarar métodos de uma classe.
+
+Ao chamar os métodos/construtores, o parâmetro `self` não precisa ser incluído, pois o Python já o insere implicitamente.
+
+Conteúdo do arquivo `conta.py`:
+```python
+class Conta:
+    def __init__(self, numero, titular, saldo, limite):
+        print("Construindo objeto... {}".format(self))
+        self.numero = numero
+        self.titular = titular
+        self.saldo = saldo
+        self.limite = limite
+
+    def extrato(self):
+        print("Saldo de {} do titular {}".format(self.saldo, self.titular))
+
+    def deposita(self, valor):
+        self.saldo += valor
+
+    def saca(self, valor):
+        self.saldo -= valor
+```
+
+Usando a classe Conta:
+```python
+>>> from conta import Conta
+>>> conta = Conta(1, 'Nico', 600, 1000)
+Construindo objeto... <conta.Conta object at 0x00000243C48F2F50>
+>>> conta2 = Conta(2, 'Marco', 700, 3000)  
+Construindo objeto... <conta.Conta object at 0x00000243C491D0D0>
+>>> conta.extrato()
+Saldo de 600 do titular Nico
+>>> conta2.extrato() 
+Saldo de 700 do titular Marco
+>>> conta2.deposita(300)
+>>> conta2.extrato()
+Saldo de 1000 do titular Marco
+>>> conta.saca(200)
+>>> conta.extrato()
+Saldo de 400 do titular Nico
+>>>
+```

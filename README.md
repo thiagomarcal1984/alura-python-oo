@@ -312,3 +312,39 @@ class Conta:
         self.__limite = limite
 ```
 
+# Métodos privados
+Para definir um método privado, basta prefixar o método com dois underscores. Não, não há uma anotação especial para métodos privados.
+
+Alteração no código do arquivo `conta.py`:
+```python
+class Conta:
+    # Resto do código.
+
+    def __pode_sacar(self, valor_a_sacar):
+        valor_disponivel_a_sacar = self.__saldo + self.__limite
+        return valor_a_sacar <= valor_disponivel_a_sacar
+
+    def saca(self, valor):
+        if (self.__pode_sacar(valor)):
+            self.__saldo -= valor
+        else:
+            print("O valor {} passou do limite. ".format(valor))
+
+    # Resto do código.
+```
+
+Usando a classe conta:
+```python
+>>> from conta import Conta
+>>> conta = Conta(123, 'nico', 500, 800)
+Construindo objeto... <conta.Conta object at 0x0000028BB3A12F50>
+>>> conta.pode_sacar(1500) # Vai falhar, método privado.
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Conta' object has no attribute 'pode_sacar'
+>>> conta._Conta__pode_sacar(1500) # Forçando o acesso a método privado.
+False
+>>> conta._Conta__pode_sacar(500) # Forçando o acesso a método privado.
+True
+>>>
+```

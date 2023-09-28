@@ -348,3 +348,35 @@ False
 True
 >>>
 ```
+# Métodos da classe
+Duas coisas para criar métodos estáticos (ou de classe):
+1. Métodos estáticos não recebem `self` como parâmetros: quem recebe são apenas os métodos de instância;
+2. É necessário usar a anotação `@staticmethod`.
+
+```python
+class Conta:
+    # Resto do código.
+    
+    @staticmethod
+    def codigo_banco():
+        return '001'
+
+    @staticmethod
+    def codigo_bancos():
+        return {
+            'BB' : '001',
+            'Caixa' : '104',
+            'Bradesco' : '237',
+        }
+```
+
+Uso da classe Conta alterada:
+```python
+>>> from conta import Conta
+>>> Conta.codigo_banco()
+'001'
+>>> codigos = Conta.codigo_bancos() 
+>>> codigos['Caixa']
+'104'
+>>>
+```

@@ -253,3 +253,62 @@ class Conta:
     def set_limite(self, limite):
         self.__limite = limite
 ```
+
+# Propriedades
+A anotação `@property` indica que o método correspondente ao getter de uma das variáveis privadas.
+
+A anotação `@{nome_da_property}.setter` indica que o método correspondente ao setter da property.
+
+```python
+>>> from cliente import Cliente
+>>> cliente = Cliente("Marco")
+>>> cliente.nome
+Chamando a @property nome()...
+'Marco'
+>>> cliente.nome = 'nico'
+Chamando o setter nome()...
+>>> cliente.nome
+Chamando a @property nome()...
+'Nico'
+>>>
+```
+
+Código do novo arquivo `cliente.py`:
+```python
+class Cliente:
+    def __init__(self, nome):
+        self.__nome = nome
+
+    @property # Anotação para o getter.
+    def nome(self):
+        print('Chamando a @property nome()...')
+        return self.__nome.title() # title() coloca a inicial em maiúscula.
+
+    @nome.setter # Anotação para o setter.
+    def nome(self, nome):
+        print('Chamando o setter nome()...')
+        self.__nome = nome
+```
+
+Atualização do código do arquivo `conta.py`:
+```python
+class Conta:
+    #Resto do código
+
+    @property
+    def saldo(self):
+        return self.__saldo
+
+    @property
+    def titular(self):
+        return self.__titular
+
+    @property
+    def limite(self):
+        return self.__limite
+
+    @limite.setter
+    def limite(self, limite):
+        self.__limite = limite
+```
+

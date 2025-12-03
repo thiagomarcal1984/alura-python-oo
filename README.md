@@ -34,3 +34,28 @@ restaurante_pizza = Restaurante()
 restaurantes = [restaurante_praca, restaurante_pizza]
 print(restaurantes)
 ```
+## Atributos de instância
+Para acessar os atributos da classe, use o operador ponto:
+```python
+restaurante_praca.nome = 'Praça'
+restaurante_praca.categoria = 'Gourmet'
+print(restaurante_praca.ativo) # Imprime False
+```
+Para ver todos os métodos e atributos de um objeto, use a função `dir`:
+```python
+print(dir(restaurante_praca))
+# Saída: 
+# ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', 
+# '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', 
+# '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', 
+# '__lt__', '__module__', '__ne__', '__new__', '__reduce__', 
+# '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', 
+# '__subclasshook__', '__weakref__', 'ativo', 'categoria', 'nome']
+```
+
+Para ver um dicionário com os atributos de classe do objeto, use a função `vars`:
+```python
+print(vars(restaurante_praca))
+# Saída: {'nome': 'Praça', 'categoria': 'Gourmet'}
+```
+> Curiosidade: somente os atributos modificados após a construção aparecem no resultado. Note que o atributo `ativo` não apareceu no dicionário porque ele não foi alterado depois da construção.

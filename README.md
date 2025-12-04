@@ -139,3 +139,24 @@ Restaurante.listar_restaurantes()
 > Note que o acesso aos atributos da classe depende de referenciar a própria e em seguida invocar o método/atributo desejado. Exemplos:
 > 1. `Restaurante.restaurantes.append(self)` (para acrescentar o objeto `self` no atributo de tipo lista `restaurantes` da classe `Restaurante`)
 > 2. `Restaurante.listar_restaurantes()` (para invocar o método `listar_restaurantes()` da classe `Restaurante`).
+
+# Property e métodos de classe
+## Property
+Vamos aprender a criar um getter de um atributo da classe. Para isso, usamos a anotação `@property`:
+```python
+class Restaurante:
+    restaurantes = []
+
+    def __init__(self, nome, categoria):
+        self.nome = nome
+        self.categoria = categoria
+        self._ativo = False # Prefixe com underline este atributo.
+        Restaurante.restaurantes.append(self)
+
+    # Resto do código
+
+    @property
+    def ativo(self):
+        return '☑' if self._ativo else '☐'
+```
+> Perceba o underline no atributo `self._ativo`: é uma convenção que os atributos prefixados com underline não sejam acessados diretamente. Eles não são necessariamente privados - pois podem ser acessados - mas convencionou-se de nunca acessar variáveis com esse prefixo.

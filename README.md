@@ -103,3 +103,13 @@ restaurante_pizza = Restaurante('Pizza Express', 'Italiana')
 print(vars(restaurante_praca))
 print(vars(restaurante_pizza))
 ```
+## Métodos especiais
+O dunder method `__str__` muda a string que representa o objeto quando ele é impresso. Por padrão, ele retorna `<__nome_modulo__.Classe object at 0x_endereco_de_memoria`.
+
+Reimplementando o método `__str__` na classe restaurante:
+```python
+class Restaurante:
+    # Resto do código
+    def __str__(self):
+        return f'{self.nome} | {self.categoria}'
+```

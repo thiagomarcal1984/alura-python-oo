@@ -113,3 +113,29 @@ class Restaurante:
     def __str__(self):
         return f'{self.nome} | {self.categoria}'
 ```
+## Criando meus métodos
+Vamos criar agora um método de classe (não de objeto).
+
+```Python
+class Restaurante:
+    restaurantes = []
+
+    def __init__(self, nome, categoria):
+        # Resto do código
+        Restaurante.restaurantes.append(self)
+
+    def __str__(self):
+        return f'{self.nome} | {self.categoria}'
+    
+    def listar_restaurantes():
+        for restaurante in Restaurante.restaurantes:
+            print(f'{restaurante.nome} | {restaurante.categoria} | {restaurante.ativo}')
+
+restaurante_praca = Restaurante('Praça', 'Gourmet')
+restaurante_pizza = Restaurante('Pizza Express', 'Italiana')
+
+Restaurante.listar_restaurantes()
+```
+> Note que o acesso aos atributos da classe depende de referenciar a própria e em seguida invocar o método/atributo desejado. Exemplos:
+> 1. `Restaurante.restaurantes.append(self)` (para acrescentar o objeto `self` no atributo de tipo lista `restaurantes` da classe `Restaurante`)
+> 2. `Restaurante.listar_restaurantes()` (para invocar o método `listar_restaurantes()` da classe `Restaurante`).

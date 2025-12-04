@@ -59,3 +59,47 @@ print(vars(restaurante_praca))
 # Saída: {'nome': 'Praça', 'categoria': 'Gourmet'}
 ```
 > Curiosidade: somente os atributos modificados após a construção aparecem no resultado. Note que o atributo `ativo` não apareceu no dicionário porque ele não foi alterado depois da construção.
+
+# Construtor e instanciando objetos
+## Construtor
+Em Python, o construtor é definido pela sobrescrita do método `__init__` da classe, que precisa de ter pelo menos um primeiro parâmetro - geralmente batizado de `self`, pois se refere ao próprio objeto. O método `__init__` pode ter outros parâmetros além do `self`, conforme exemplo:
+
+```python
+class Restaurante:
+    def __init__(me, nome, categoria):
+        # Substitui o nome self por me para teste. Ainda assim o 
+        # código funciona: não é obrigatório usar a palavra self.
+        me.nome = nome
+        me.categoria = categoria
+        me.ativo = False
+```
+
+Mensagem que aparece ao tentar instanciar o objeto restaurante sem fornecer os parâmetros para construção conforme método `__init__`:
+```python
+print(
+    Restaurante())
+```
+Saída:
+```
+Traceback (most recent call last):
+  File "D:\git\python-oo\modelos\restaurante.py", line 8, in <module>
+    restaurante_praca = Restaurante()
+                        ^^^^^^^^^^^^^
+TypeError: Restaurante.__init__() missing 2 required positional arguments: 'nome' and 'categoria'     
+```
+
+Código alterado em `models/restaurante.py`:
+```Python
+class Restaurante:
+    def __init__(self, nome, categoria):
+        self.nome = nome
+        self.categoria = categoria
+        self.ativo = False
+
+
+restaurante_praca = Restaurante('Praça', 'Gourmet')
+restaurante_pizza = Restaurante('Pizza Express', 'Italiana')
+
+print(vars(restaurante_praca))
+print(vars(restaurante_pizza))
+```

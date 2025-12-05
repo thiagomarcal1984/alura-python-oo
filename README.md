@@ -194,3 +194,33 @@ restaurante_pizza = Restaurante('pizza Express', 'Italiana')
 
 Restaurante.listar_restaurantes()
 ```
+
+## Métodos de classes
+Métodos de classe (ou estáticos) são declarados com a anotação `@classmethod`, e ela deve ter pelo menos um parâmetro que represente a classe - algo semelhante aos métodos de objeto. 
+
+Enquanto o primeiro parâmetro dos métodos de objetos geralmente seja chamado de `self`, o primeiro parâmetro dos métodos de classe/estático geralmente é chamado de `cls`.
+
+```python
+class Restaurante:
+    # Resto do código
+    
+    @classmethod
+    def listar_restaurantes(minha_classe): # cls
+        print(f"{'Nome'.ljust(25)} | {'Categoria'.ljust(25)} | {'Ativo'}")
+        for restaurante in minha_classe.restaurantes: # cls
+            print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {restaurante.ativo}')
+    # Resto do código
+```
+> Note que o método `listar_restaurantes` está anotado com `@classmethod` e tem como primeiro parâmetro uma variável que batizamos de `minha_classe`. A variável `minha_classe` geralmente é escrita como `cls`, mas usamos outro nome de variável para mostrar que isso não é obrigatório no Python.
+
+Também implementamos um método para ligar/desligar o estado de ativo do restaurante: 
+
+```python
+class Restaurante:
+    # Resto do código
+        
+    def alternar_estado(self):
+        self._ativo = not self._ativo
+    
+    # Resto do código
+```

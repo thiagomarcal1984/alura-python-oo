@@ -224,3 +224,22 @@ class Restaurante:
     
     # Resto do código
 ```
+# Importando classe e composição
+## From e import
+Vamos criar um arquivo `main.py` e nele vamos importar a classe `Restaurante` do módulo `modelo.resturante.py`:
+
+```python
+from modelos.restaurante import Restaurante
+
+restaurante_praca = Restaurante('praça', 'Gourmet')
+restaurante_mexicano = Restaurante('Mexican Food', 'Mexicana')
+restaurante_japones = Restaurante('Japa', 'Japonesa')
+
+restaurante_mexicano.alternar_estado()
+
+def main():
+    Restaurante.listar_restaurantes()
+
+if __name__ == '__main__':
+    main()
+```

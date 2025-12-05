@@ -160,3 +160,37 @@ class Restaurante:
         return '☑' if self._ativo else '☐'
 ```
 > Perceba o underline no atributo `self._ativo`: é uma convenção que os atributos prefixados com underline não sejam acessados diretamente. Eles não são necessariamente privados - pois podem ser acessados - mas convencionou-se de nunca acessar variáveis com esse prefixo.
+
+## Aprofundando em propriedades
+O VSCode possui um atalho para renomear um atributo/método de uma classe: a tecla `F2`. Note que os atributos `nome`, `categoria` e `ativo` agora são prefixados com underline, ou seja, são "privados". O código da aplicação foi mudado conforme a seguir:
+
+```python
+class Restaurante:
+    restaurantes = []
+
+    def __init__(self, nome, categoria):
+        self._nome = nome.title() # Privado.
+        self._categoria = categoria.upper() # Privado.
+        self._ativo = False # Privado.
+        Restaurante.restaurantes.append(self)
+
+    def __str__(self):
+        return f'{self._nome} | {self._categoria}'
+    
+    def listar_restaurantes():
+        # Privado.
+        print(f"{'Nome'.ljust(25)} | {'Categoria'.ljust(25)} | {'Ativo'}") 
+        for restaurante in Restaurante.restaurantes:
+            # Privado.
+            print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {restaurante.ativo}')
+    
+    @property
+    def ativo(self):
+        return '☑' if self._ativo else '☐' # Privado.
+    
+restaurante_praca = Restaurante('praça', 'Gourmet')
+restaurante_praca._nome = 'Praça 2.0' # Privado.
+restaurante_pizza = Restaurante('pizza Express', 'Italiana')
+
+Restaurante.listar_restaurantes()
+```

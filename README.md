@@ -243,3 +243,37 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+## Criando a classe de avaliação
+A classe `Avaliacao` será muito pequena. Lembre-se de prefixar com underline os atributos privados da classe: 
+
+```python
+# modelos/avaliacao.py
+class Avaliacao:
+    def __init__(self, cliente, nota):
+        self._cliente = cliente
+        self._nota = nota
+```
+
+Vamos embutir as avaliações noa classe `Restaurante`:
+```python
+# modelos/restaurante.py
+from modelos.avaliacao import Avaliacao
+
+class Restaurante:
+    restaurantes = []
+
+    def __init__(self, nome, categoria):
+        self._avaliacao = []
+        # Resto do código
+    def receber_avaliacao(self, cliente, nota):
+        avaliacao = Avaliacao(cliente, nota)
+        self._avaliacao.append(avaliacao)
+
+# Resto do código
+```
+E finalmente vamos usar a classe no arquivo `main.py`:
+```python
+restaurante_praca.receber_avaliacao('Gui', 10)
+restaurante_praca.receber_avaliacao('Laís', 8)
+restaurante_praca.receber_avaliacao('Emy', 5)
+```

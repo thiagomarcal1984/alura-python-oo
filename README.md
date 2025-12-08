@@ -329,3 +329,34 @@ class Restaurante:
 ```
 > Note que a propriedade `media_avaliacoes` é do tipo `float`, portanto o método `ljust` não se aplica a esse tipo. Por isso foi necessário converter o float para string.
 > O método `join` da classe string serve para intercalar a string em uma lista.
+# Consolidando os conhecimentos
+## Apresentação do mão na massa
+Problemas: 
+1. As notas das avaliações precisam estar entre 1 e 5.
+2. A média das avaliações não deve ser zero quando não houver avaliações do restaurante.
+
+## Solução
+```python
+# modelos/restaurante.py
+from modelos.avaliacao import Avaliacao
+
+class Restaurante:
+# Resto do código
+
+    def receber_avaliacao(self, cliente, nota):
+        # 1. Notas entre 1 e 5:
+        if 0 < nota <= 5:
+            avaliacao = Avaliacao(cliente, nota)
+            self._avaliacao.append(avaliacao)
+        # else:
+        #     raise ValueError('A nota deve estar entre 1 e 5')
+
+    @property
+    def media_avaliacoes(self):
+        # Não exibir zero na média de restaurante sem avaliações.
+        if not self._avaliacao:
+            return '-'
+        soma_das_notas = sum(avaliacao._nota for avaliacao in self._avaliacao)
+        quantidade_de_notas = len(self._avaliacao)
+        return round(soma_das_notas / quantidade_de_notas, 1)
+```

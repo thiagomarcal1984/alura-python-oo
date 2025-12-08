@@ -277,3 +277,28 @@ restaurante_praca.receber_avaliacao('Gui', 10)
 restaurante_praca.receber_avaliacao('Laís', 8)
 restaurante_praca.receber_avaliacao('Emy', 5)
 ```
+## Composição
+Implementação da propriedade `media_avaliacoes` na classe `Restaurante`:
+```python
+from modelos.avaliacao import Avaliacao
+
+class Restaurante:
+    restaurantes = []
+
+    def __init__(self, nome, categoria):
+        self._nome = nome.title()
+        self._categoria = categoria.upper()
+        self._ativo = False
+        self._avaliacao = []
+        Restaurante.restaurantes.append(self)
+
+    # Resto do código
+
+    @property
+    def media_avaliacoes(self):
+        if not self._avaliacao:
+            return 0
+        soma_das_notas = sum(avaliacao._nota for avaliacao in self._avaliacao)
+        quantidade_de_notas = len(self._avaliacao)
+        return round(soma_das_notas / quantidade_de_notas, 1)
+```

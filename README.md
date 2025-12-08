@@ -302,3 +302,30 @@ class Restaurante:
         quantidade_de_notas = len(self._avaliacao)
         return round(soma_das_notas / quantidade_de_notas, 1)
 ```
+
+## Listando avaliações
+Adaptando o método `listar_restaurantes` da classe `Restaurante`:
+```python
+# modelos/restaurante.py
+from modelos.avaliacao import Avaliacao
+
+class Restaurante:
+    # Resto do código
+    @classmethod
+    def listar_restaurantes(cls):
+        print(" | ".join([
+            'Nome'.ljust(25), 
+            'Categoria'.ljust(25), 
+            'Avaliação'.ljust(25), 
+            'Ativo'
+        ]))
+        for restaurante in cls.restaurantes:
+            print(' | '.join([
+                restaurante._nome.ljust(25),
+                restaurante._categoria.ljust(25),
+                str(restaurante.media_avaliacoes).ljust(25), # Float para string.
+                restaurante.ativo
+            ]))
+```
+> Note que a propriedade `media_avaliacoes` é do tipo `float`, portanto o método `ljust` não se aplica a esse tipo. Por isso foi necessário converter o float para string.
+> O método `join` da classe string serve para intercalar a string em uma lista.
